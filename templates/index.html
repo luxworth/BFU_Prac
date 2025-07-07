@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Последние игровые новости</h2>
+  <div class="news-list">
+    {% for item in news %}
+      <article class="news-item">
+        <h3><a href="{{ item.link }}" target="_blank">{{ item.title }}</a></h3>
+        <small>{{ item.published }}</small>
+        <p>{{ item.summary | safe }}</p>
+      </article>
+    {% else %}
+      <p>Не удалось загрузить новости. Попробуйте позже.</p>
+    {% endfor %}
+  </div>
+{% endblock %} 

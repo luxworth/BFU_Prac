@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Скидки на игры</h2>
+  <div class="deal-list">
+    {% for deal in deals %}
+      <div class="deal-item">
+        <h3>
+          <a href="https://www.cheapshark.com/redirect?dealID={{ deal.dealID }}" target="_blank">
+            {{ deal.title }}
+          </a>
+        </h3>
+        <p>
+          Цена: ${{ deal.salePrice }} (обычно ${{ deal.normalPrice }}) — Экономия
+          {{ deal.savings | float | round(1) }}%
+        </p>
+      </div>
+    {% else %}
+      <p>Не удалось загрузить список скидок.</p>
+    {% endfor %}
+  </div>
+
+  <h2>Бесплатные раздачи</h2>
+  <div class="deal-list">
+    {% for free in freebies %}
+      <div class="deal-item free">
+        <h3>
+          <a href="https://www.cheapshark.com/redirect?dealID={{ free.dealID }}" target="_blank">
+            {{ free.title }}
+          </a>
+        </h3>
+        <p>Сейчас бесплатно (обычно ${{ free.normalPrice }})</p>
+      </div>
+    {% else %}
+      <p>На данный момент нет бесплатных предложений.</p>
+    {% endfor %}
+  </div>
+{% endblock %} 
